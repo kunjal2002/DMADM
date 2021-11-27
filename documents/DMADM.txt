@@ -18,7 +18,7 @@ git clone https://github.com/kunjal2002/DMADM.git
 cd DMADM
 git add .
 git status
+git commit . -m 'my first commit'
 git push
-git commit . 'my commits for today'
 
 git pull
