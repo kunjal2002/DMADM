@@ -89,6 +89,7 @@ public class DoctorDetailsController implements Initializable {
                 }
                 @Override
                 public DiseaseInfo fromString(final String string) {
+                    //TODO
                     return new DiseaseInfo(0, "");
                     //return CBoxSpecialization.getItems().stream().filter(p -> p.getName().equals(string)).findFirst().orElse(null);
                 }

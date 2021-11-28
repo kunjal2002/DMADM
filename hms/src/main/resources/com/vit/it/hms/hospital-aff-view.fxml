@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vit.it.hms.HospitalAffController">
+   <children>
+      <ImageView fitHeight="120.0" fitWidth="346.0" layoutX="26.0" pickOnBounds="true" preserveRatio="true">
+
+      </ImageView>
+      <Label layoutX="141.0" layoutY="44.0" prefHeight="70.0" prefWidth="545.0" text="Hospital - Doctor Details" AnchorPane.leftAnchor="141.0" AnchorPane.topAnchor="44.0">
+         <font>
+            <Font name="Bradley Hand Bold" size="48.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableDoctorHosp" layoutX="22.0" layoutY="99.0" prefHeight="435.0" prefWidth="760.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <columns>
+            <TableColumn fx:id="col_drID" prefWidth="75.0" text="Doctor ID" />
+            <TableColumn fx:id="col_drName" minWidth="130.0" prefWidth="231.99998474121094" text="Doctor Name" />
+            <TableColumn fx:id="col_hospID" minWidth="18.127410888671875" prefWidth="143.20001220703125" text="Hospital ID" />
+            <TableColumn fx:id="col_hospName" minWidth="18.127410888671875" prefWidth="177.79998779296875" text="Hospital Name" />
+         </columns>
+      </TableView>
+
+      <Button fx:id="goBackButton" layoutX="715.0" layoutY="31.0" mnemonicParsing="false" onAction="#goBackAction" text="Go Back" />
+
+      <VBox layoutX="159.0" layoutY="280.0" prefHeight="84.0" prefWidth="114.0" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="280.0" />
+
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="40.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+         <image>
+            <Image url="@../../../../images/doctor-icon.png" />
+         </image>
+      </ImageView>
+
+
+   </children>
+</AnchorPane>

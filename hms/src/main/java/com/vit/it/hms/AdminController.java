@@ -30,7 +30,8 @@ public class AdminController  implements Initializable {
     private Button  addPatientButton;
     @FXML
     private Button addHospitalButton;
-
+    @FXML
+    private Button addAffiliationButton;
 
     //button will log you out back to login page
     public void logoutButtonPushed(ActionEvent actionEvent) throws IOException {
@@ -82,6 +83,14 @@ public class AdminController  implements Initializable {
     }
 
 
-
-
+    public void addAffiliationButtonPushed(ActionEvent actionEvent) throws IOException {
+        addAffiliationButton.getScene().getWindow().hide();
+        Stage stage = new Stage();
+        Parent root = null;
+        root = FXMLLoader.load(HmsApplication.class.getResource("hospital-aff-view.fxml"));
+        Scene scene = new Scene(root, 960, 720);
+        stage.setTitle("VIT - Hospital Management System - HospDoct Affiliation");
+        stage.setScene(scene);
+        stage.show();
+    }
 }
