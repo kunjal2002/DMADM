@@ -20,10 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 /**
@@ -37,12 +34,13 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField loginPassword;
     @FXML
+    private RadioButton usertype1;
+    @FXML
+    private RadioButton usertype2;
+    @FXML
+    private RadioButton usertype3;
+    @FXML
     private Button login;
-    @FXML
-    private Button register;
-    @FXML
-    private Button forgotPW;
-    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,73 +53,91 @@ public class LoginController implements Initializable {
         //get user input
         String username = loginUsername.getText().toString();
         String password = loginPassword.getText().toString();
+        boolean ut1 = usertype1.isSelected();
+        boolean ut2 = usertype2.isSelected();
+        String ut = "A";
+
+        if (ut1) {
+            ut = "P";
+        }
+        else if(ut2){
+            ut = "D";
+        }
+
+        //MessagePopup.display("Login Credentials", username + "-" + password + "-" + ut);
+
         //uses check to see if the data is correct to login successfully
-        if(check(username,password)){
+        if(check(username, password, ut)){
             MessagePopup.display("Login Status", "Login Success!");
              
             login.getScene().getWindow().hide();
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("Welcome.fxml"));
-            stage.setTitle("Hospital Management System");
-            stage.setScene(new Scene(root));
+
+            //now we are able to login, based on the User logged in open different pages
+            Parent root = null;
+
+            if (ut.equalsIgnoreCase("P")) {
+                //load patient related page
+                root = FXMLLoader.load(HmsApplication.class.getResource("patient-view.fxml"));
+                stage.setTitle("VIT - Hospital Management System - Patient");
+            }else if (ut.equalsIgnoreCase("D")) {
+                //load doctor related page
+                root = FXMLLoader.load(HmsApplication.class.getResource("doctor-view.fxml"));
+                stage.setTitle("VIT - Hospital Management System - Doctor");
+            } else {
+                //load admin page
+                root = FXMLLoader.load(HmsApplication.class.getResource("admin-view.fxml"));
+                stage.setTitle("VIT - Hospital Management System - Admin");
+            }
+
+            Scene scene = new Scene(root, 960, 720);
+            stage.setScene(scene);
             stage.show();
-            stage.setResizable(false);
+            //stage.setResizable(false);
         }
         else{
             MessagePopup.display("Login Status", "Username/password is wrong. Try again!");
         }
         
-        
-        /*
-        //TESTINGGGGG
-        MessagePopup.display("Login Status", "Login Success!");
-        login.getScene().getWindow().hide();
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("Welcome.fxml"));
-            stage.setTitle("Hospital Management System");
-            stage.setScene(new Scene(root));
-            stage.show();
-            stage.setResizable(false);
-        */
+
         
     }
     
     //this will check to see if the user account is stored in the database
-    public static boolean check(String usrnm, String psswrd){
+    public static boolean check(String usrnm, String psswrd, String ut){
          PreparedStatement pst = null;
          ResultSet rs = null;
-         String query = "SELECT username, password FROM admin WHERE username=? AND password=?";
+         String query = "SELECT LOGIN_ID, PWD, USER_TYPE FROM LOGIN_INFO WHERE LOGIN_ID=? AND PWD=? AND USER_TYPE=? ";
          
          try{
              //get a connection with MySQL 'hospital' database
-             Class.forName("com.mysql.jdbc.Driver");
-             Connection conn = DBConnect.getConnection();
+             //Class.forName("com.mysql.jdbc.Driver");
+             Connection conn = DBConnect.getConnection("hospitaldb");
              pst = conn.prepareStatement(query); 
              pst.setString(1,usrnm);
              pst.setString(2,psswrd);
+             pst.setString(3,ut);
              rs = pst.executeQuery();
-             
+
+             //MessagePopup.display("Login Status", "DB connection successful");
+
+
              if(rs.next()){
+                 String LOGIN_ID = rs.getString("LOGIN_ID");
+                 String PWD = rs.getString("PWD");
+                 String USER_TYPE = rs.getString("USER_TYPE");
+
+                 //MessagePopup.display("Rows", LOGIN_ID + " " + PWD  + " " + USER_TYPE);
+
                  return true;
              }
              else{
                  return false;
              }
          }catch (Exception e){
+             MessagePopup.display("Login Status", e.getMessage() + "" + e.toString());
              return false;
          }
     }
-    
-    //new frame to register a new user when "Register" button clicked
-    @FXML
-    public void registerButtonPushed(ActionEvent e) throws IOException {
-        register.getScene().getWindow().hide();
-           
-        Stage register = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("Register.fxml"));
-        Scene scene = new Scene(root);
-        register.setScene(scene);
-        register.show();
-        register.setResizable(false);
-    }
+
 }

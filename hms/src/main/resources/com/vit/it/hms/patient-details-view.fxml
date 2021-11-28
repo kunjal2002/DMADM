@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vit.it.hms.PatientDetailsController">
+   <children>
+      <TableView fx:id="tablePatient" layoutX="32.0" layoutY="109.0" prefHeight="428.0" prefWidth="760.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <columns>
+            <TableColumn fx:id="col_patID" prefWidth="76.0" text="Patient ID" />
+            <TableColumn fx:id="col_patName" minWidth="54.0" prefWidth="292.4000244140625" text="Name" />
+            <TableColumn fx:id="col_patDOB" minWidth="18.127410888671875" prefWidth="154.79998779296875" text="DOB" />
+            <TableColumn fx:id="col_patLastUpdated" minWidth="5.0" prefWidth="229.39996337890625" text="Last Updated" />
+
+         </columns>
+      </TableView>
+      <TextField fx:id="patName" layoutX="36.0" layoutY="96.0" promptText="Patient Full Name" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="96.0" />
+      <DatePicker fx:id="patDOB" layoutX="235.0" layoutY="96.0" promptText="Date of birth" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="96.0" />
+
+
+      <Button fx:id="goBackButton" layoutX="706.0" layoutY="22.0" mnemonicParsing="false" onAction="#goBackAction" text="Go Back" />
+      <Button fx:id="deletePatientButton" layoutX="716.0" layoutY="217.0" mnemonicParsing="false" onAction="#deletePatientAction" text="Delete selected..." />
+      <Button fx:id="addPatientButton" layoutX="452.0" layoutY="96.0" mnemonicParsing="false" onAction="#addPatientAction" text="Add" />
+
+
+      <Label layoutX="36.0" layoutY="12.0" prefHeight="45.0" prefWidth="546.0" text="Add Patient Details">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+
+
+   </children>
+</AnchorPane>

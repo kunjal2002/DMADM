@@ -12,7 +12,7 @@ public class HmsApplication extends Application {
     public void start(Stage stage) throws IOException {
         // FXMLLoader fxmlLoader = new FXMLLoader(HmsApplication.class.getResource("hms-view.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(HmsApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 960, 720);
         stage.setTitle("VIT - Hospital Management System");
         stage.setScene(scene);
         stage.show();

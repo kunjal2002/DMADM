@@ -10,7 +10,7 @@ https://github.com/winston-dsouza/Online-Food-Ordering-System
 https://github.com/dnnylm/Hospital-Management-System
 
 
--- git comamns used
+-- git comamnds used
 cd D:/DBMS_Data_Mining/course_proj
  
 git clone https://github.com/kunjal2002/DMADM.git
@@ -22,3 +22,38 @@ git commit . -m 'my first commit'
 git push
 
 git pull
+-----------
+
+Admin screen features
+--
+Add New Patient
+Edit Patient Details
+Add New Doctor
+Edit Doctor Details
+Add New Hospital
+Edit Hospital Details
+
+
+Doctor screen features
+--
+View apoointments
+Prescribe Tests
+Update Test Result
+
+Patient screen features
+--
+Take Appointment
+View Test Results
+
+
+earlier Patient details:
+check in patient
+update patient
+check out patient
+treatment
+gender
+
+
+
+
+

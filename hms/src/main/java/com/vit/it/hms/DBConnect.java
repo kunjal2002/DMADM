@@ -16,21 +16,34 @@ import java.sql.SQLException;
 public class DBConnect {
     
     private static Connection conn;
-    private static final String url = "jdbc:mysql://localhost:3306/hospital?zeroDateTimeBehavior=convertToNull";
+    private static final String url = "jdbc:mysql://localhost:3306/hospitaldb?zeroDateTimeBehavior=convertToNull";
     private static final String user = "root";
-    private static final String pass = "Password1";
+    private static final String pass = "admin";
     
-    public static Connection getConnection() throws SQLException {
-        
-        conn = DriverManager.getConnection(url,user,pass);
-        return conn;
+    public static Connection getConnection(String DbName) throws SQLException {
+
+        Connection connect = null;
+        try {
+            // This will load the MySQL driver, each DB has its own driver
+            //Class.forName("com.mysql.jdbc.Driver");
+            // Setup the connection with the DB
+            connect = DriverManager
+                    .getConnection("jdbc:mysql://localhost/" + DbName + "?user=root&password=admin");;
+
+            return connect;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            throw e;
+        } finally {
+            return connect;
+        }
         
     }
     
     public static Connection conn() throws SQLException, ClassNotFoundException{
         if(conn !=null && !conn.isClosed())
             return conn;
-        getConnection();
+        getConnection("hospitaldb");
         return conn;
  
     }
