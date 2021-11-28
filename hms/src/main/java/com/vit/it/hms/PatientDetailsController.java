@@ -157,7 +157,7 @@ public class PatientDetailsController implements Initializable {
                 patientList.add(p);
             }
         }catch (SQLException e) {
-            MessagePopup.display("Login Status", e.getMessage() + "" + e.toString());
+            MessagePopup.display("View Refresh", e.getMessage() + "" + e.toString());
         }
 
     }

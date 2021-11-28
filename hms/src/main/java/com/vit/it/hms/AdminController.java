@@ -27,15 +27,10 @@ public class AdminController  implements Initializable {
     @FXML
     private Button addDoctorButton;
     @FXML
-    private Button editDoctorButton;
-    @FXML
     private Button  addPatientButton;
     @FXML
-    private Button editPatientButton;
-    @FXML
     private Button addHospitalButton;
-    @FXML
-    private Button editHospitalButton;
+
 
     //button will log you out back to login page
     public void logoutButtonPushed(ActionEvent actionEvent) throws IOException {
@@ -53,7 +48,7 @@ public class AdminController  implements Initializable {
         logoutButton.getScene().getWindow().hide();
         Stage stage = new Stage();
         Parent root = null;
-        root = FXMLLoader.load(HmsApplication.class.getResource("login-view.fxml"));
+        root = FXMLLoader.load(HmsApplication.class.getResource("doctor-details-view.fxml"));
         Scene scene = new Scene(root, 960, 720);
         stage.setTitle("VIT - Hospital Management System - Admin");
         stage.setScene(scene);
@@ -61,16 +56,6 @@ public class AdminController  implements Initializable {
     }
 
 
-    public void editDoctorButtonPushed(ActionEvent actionEvent) throws IOException {
-        logoutButton.getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = null;
-        root = FXMLLoader.load(HmsApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(root, 960, 720);
-        stage.setTitle("VIT - Hospital Management System - Admin");
-        stage.setScene(scene);
-        stage.show();
-    }
 
     public void addPatientButtonPushed(ActionEvent actionEvent) throws IOException {
         logoutButton.getScene().getWindow().hide();
@@ -83,38 +68,20 @@ public class AdminController  implements Initializable {
         stage.show();
     }
 
-    public void editPatientButtonPushed(ActionEvent actionEvent) throws IOException {
-        logoutButton.getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = null;
-        root = FXMLLoader.load(HmsApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(root, 960, 720);
-        stage.setTitle("VIT - Hospital Management System - Admin");
-        stage.setScene(scene);
-        stage.show();
-    }
+
 
     public void addHospitalButtonPushed(ActionEvent actionEvent) throws IOException {
         logoutButton.getScene().getWindow().hide();
         Stage stage = new Stage();
         Parent root = null;
-        root = FXMLLoader.load(HmsApplication.class.getResource("login-view.fxml"));
+        root = FXMLLoader.load(HmsApplication.class.getResource("hospital-details-view.fxml"));
         Scene scene = new Scene(root, 960, 720);
         stage.setTitle("VIT - Hospital Management System - Admin");
         stage.setScene(scene);
         stage.show();
     }
 
-    public void editHospitalButtonPushed(ActionEvent actionEvent) throws IOException {
-        logoutButton.getScene().getWindow().hide();
-        Stage stage = new Stage();
-        Parent root = null;
-        root = FXMLLoader.load(HmsApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(root, 960, 720);
-        stage.setTitle("VIT - Hospital Management System - Admin");
-        stage.setScene(scene);
-        stage.show();
-    }
+
 
 
 }

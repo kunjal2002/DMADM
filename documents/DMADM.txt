@@ -11,7 +11,7 @@ https://github.com/dnnylm/Hospital-Management-System
 
 
 -- git comamnds used
-cd D:/DBMS_Data_Mining/course_proj
+cd D:/DBMS_Data_Mining/course_proj/DMADM
  
 git clone https://github.com/kunjal2002/DMADM.git
 
@@ -52,8 +52,5 @@ update patient
 check out patient
 treatment
 gender
-
-
-
 
 
