@@ -24,12 +24,12 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>15.0.1</version>
+            <version>17-ea+11</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>15.0.1</version>
+            <version>17-ea+11</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -41,10 +41,11 @@
             <artifactId>controlsfx</artifactId>
             <version>11.1.0</version>
         </dependency>
+
         <dependency>
             <groupId>com.dlsc.formsfx</groupId>
             <artifactId>formsfx-core</artifactId>
-            <version>11.3.2</version>
+            <version>11.4.2</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.openjfx</groupId>

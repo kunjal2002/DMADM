@@ -105,7 +105,7 @@ public class DoctorDetailsController implements Initializable {
         goBackButton.getScene().getWindow().hide();
         Stage stage = new Stage();
         Parent root = null;
-        root = FXMLLoader.load(HmsApplication.class.getResource("admin-view.fxml"));
+        root = FXMLLoader.load(HmsApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(root, 960, 720);
         stage.setTitle("VIT - Hospital Management System - Admin");
         stage.setScene(scene);

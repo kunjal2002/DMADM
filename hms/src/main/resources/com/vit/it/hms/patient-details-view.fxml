@@ -26,6 +26,8 @@
       <Button fx:id="addPatientButton" layoutX="452.0" layoutY="96.0" mnemonicParsing="false" onAction="#addPatientAction" text="Add" />
       <Button fx:id="bookAppButton" layoutX="441.0" layoutY="198.0" mnemonicParsing="false" onAction="#bookAppAction" text="Book Appointment" />
 
+      <ComboBox fx:id="CBoxSpecialization" layoutX="36.0" layoutY="224.0" prefWidth="167.0" promptText="Select Doctor" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="224.0" />
+
 
 
       <Label layoutX="36.0" layoutY="12.0" prefHeight="45.0" prefWidth="546.0" text="Add Patient Details">

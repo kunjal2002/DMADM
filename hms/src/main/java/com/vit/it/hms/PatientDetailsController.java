@@ -1,5 +1,6 @@
 package com.vit.it.hms;
 
+import com.dlsc.formsfx.model.structure.IntegerField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,12 +36,8 @@ public class PatientDetailsController implements Initializable {
     public TableColumn<Patient, String> col_patDOB;
     public TableColumn<Patient, String> col_patLastUpdated;
 
-
     private ObservableList<Patient> patientList;
-
-
-
-
+    private ObservableList<DoctorInfo> doctorList;
 
     /**
      * Initializes the controller class.
@@ -61,7 +60,11 @@ public class PatientDetailsController implements Initializable {
         //run these methods to load table at start of page
         loadPatientTable();
         loadPatientData();
+
+        doctorList = FXCollections.observableArrayList();
+        loadDoctorData();
     }
+
 
     @FXML
     private Button goBackButton;
@@ -79,20 +82,20 @@ public class PatientDetailsController implements Initializable {
     private DatePicker appdate;
     @FXML
     private TextField doctname;
+    @FXML
+    private ComboBox CBoxSpecialization;
+
 
     //button will log you out back to login page
     public void goBackAction(ActionEvent actionEvent) throws IOException {
         goBackButton.getScene().getWindow().hide();
         Stage stage = new Stage();
         Parent root = null;
-        root = FXMLLoader.load(HmsApplication.class.getResource("admin-view.fxml"));
+        root = FXMLLoader.load(HmsApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(root, 960, 720);
         stage.setTitle("VIT - Hospital Management System - Admin");
         stage.setScene(scene);
         stage.show();
-
-
-
     }
 
     public void addPatientAction(ActionEvent actionEvent) throws IOException {
@@ -141,6 +144,42 @@ public class PatientDetailsController implements Initializable {
 
 
 
+    private void loadDoctorData() {
+        try {
+            Connection conn = DBConnect.getConnection("hospitaldb");
+
+            PreparedStatement prst = conn.prepareStatement("SELECT * FROM DOCTOR ORDER BY DOC_ID");
+            ResultSet rs = prst.executeQuery();
+
+            while(rs.next()){
+                DoctorInfo p = new DoctorInfo(rs.getInt("DOC_ID"),rs.getString("NAME"));
+                doctorList.add(p);
+            }
+
+            CBoxSpecialization.setItems(null);
+            CBoxSpecialization.setItems(doctorList);
+
+            CBoxSpecialization.setConverter(new StringConverter<DoctorInfo>() {
+                @Override
+                public String toString(DoctorInfo p) {
+                    return p.getNAME();
+                }
+                @Override
+                public DoctorInfo fromString(final String string) {
+                    //TODO
+                    return new DoctorInfo(0, "");
+                    //return CBoxSpecialization.getItems().stream().filter(p -> p.getName().equals(string)).findFirst().orElse(null);
+                }
+            });
+
+        }catch (SQLException e) {
+            MessagePopup.display("View refresh - loadDoctorData", e.getMessage() + "" + e.toString());
+        }
+    }
+
+
+
+
 
 
     public void bookAppAction(ActionEvent actionEvent) throws IOException {
@@ -162,7 +201,14 @@ public class PatientDetailsController implements Initializable {
                 return;
             }
 
-            String dName = doctname.getText().toString();
+            //String dName = doctname.getText().toString();
+
+
+            DoctorInfo d = (DoctorInfo) CBoxSpecialization.getValue();
+            String dName = d.getNAME();
+            //lookup DISEASE_ID from specilization selected
+            int dDoctorId = 0;
+            dDoctorId = d.getDoctor_ID();
 
             if (dName.trim().equalsIgnoreCase("")){
                 //error it out
@@ -175,7 +221,7 @@ public class PatientDetailsController implements Initializable {
 
             PreparedStatement pst = null;
             ResultSet rs = null;
-            String query = "INSERT INTO APPOINTMENTS(patientID, dNAME, appDate) VALUES (?, ?, ?) ";
+            String query = "INSERT INTO APPOINTMENTS(patientID, dName, appDate) VALUES (?, ?, ?) ";
 
             try{
                 //get a connection with MySQL 'hospital' database
@@ -197,6 +243,7 @@ public class PatientDetailsController implements Initializable {
 
             }catch (Exception e){
                 MessagePopup.display("Book Appointment Action", e.getMessage() + "" + e.toString());
+                System.out.println(e);
             }
 
 
@@ -204,19 +251,10 @@ public class PatientDetailsController implements Initializable {
             loadPatientTable();
             loadPatientData();
         } else {
-            MessagePopup.display("Book Appointment Action", "Select row to delete!");
+            MessagePopup.display("Book Appointment Action", "Select row to book!");
         }
 
     }
-
-
-
-
-
-
-
-
-
 
 
     //then we LOAD THE DATA onto the tableview
@@ -228,6 +266,7 @@ public class PatientDetailsController implements Initializable {
 
         //set data to tableview
         tablePatient.setItems(patientList);
+
     }
 
     //LOAD PATIENT DATA from database

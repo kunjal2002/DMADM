@@ -1,5 +1,8 @@
 package com.vit.it.hms;
 
+import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+
 public class Patient {
 
     public Patient(int PATIENT_ID, String NAME, String DOB) {

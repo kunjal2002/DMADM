@@ -7,10 +7,13 @@
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vit.it.hms.DoctorDetailsController">
    <children>
-      <ImageView fitHeight="120.0" fitWidth="346.0" layoutX="26.0" pickOnBounds="true" preserveRatio="true">
-
+      <ImageView fitHeight="157.0" fitWidth="182.0" layoutX="484.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+              <Image url="@../../../../images/doct.png" />
+          </image>
       </ImageView>
-      <Label layoutX="100.0" layoutY="2.0" prefHeight="68.0" prefWidth="370.0" text="Doctor Details" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="2.0">
+
+      <Label layoutX="89.0" layoutY="57.0" prefHeight="68.0" prefWidth="370.0" text="Doctor Details" AnchorPane.leftAnchor="89.0" AnchorPane.topAnchor="57.0">
          <font>
             <Font name="Bradley Hand Bold" size="48.0" />
          </font>
@@ -25,13 +28,13 @@
         </columns>
       </TableView>
 
-      <TextField fx:id="txtDrName" layoutX="50.0" layoutY="109.0" promptText="Full Name" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="109.0" />
-      <TextField fx:id="txtDrDegree" layoutX="223.0" layoutY="107.0" promptText="Degree" AnchorPane.leftAnchor="223.0" AnchorPane.topAnchor="107.0" />
-      <ComboBox fx:id="CBoxSpecialization" layoutX="386.0" layoutY="107.0" prefWidth="167.0" promptText="Select Specialty" AnchorPane.leftAnchor="386.0" AnchorPane.topAnchor="107.0" />
+      <TextField fx:id="txtDrName" layoutX="42.0" layoutY="254.0" promptText="Full Name" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="254.0" />
+      <TextField fx:id="txtDrDegree" layoutX="217.0" layoutY="254.0" promptText="Degree" AnchorPane.leftAnchor="217.0" AnchorPane.topAnchor="254.0" />
+      <ComboBox fx:id="CBoxSpecialization" layoutX="400.0" layoutY="254.0" prefWidth="167.0" promptText="Select Specialty" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="254.0" />
 
       <Button fx:id="goBackButton" layoutX="715.0" layoutY="31.0" mnemonicParsing="false" onAction="#goBackAction" text="Go Back" />
       <Button fx:id="deleteDocButton" layoutX="590.0" layoutY="350.0" mnemonicParsing="false" onAction="#deleteDoctorAction" text="Delete selected..." />
-      <Button fx:id="addDocButton" layoutX="695.0" layoutY="107.0" mnemonicParsing="false" onAction="#addDoctorAction" text="Add" />
+      <Button fx:id="addDocButton" layoutX="676.0" layoutY="254.0" mnemonicParsing="false" onAction="#addDoctorAction" text="Add" />
 
       <VBox layoutX="159.0" layoutY="280.0" prefHeight="84.0" prefWidth="114.0" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="280.0" />
 
