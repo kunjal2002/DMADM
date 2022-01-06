@@ -18,15 +18,24 @@
       <TextField fx:id="patName" layoutX="36.0" layoutY="96.0" promptText="Patient Full Name" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="96.0" />
       <DatePicker fx:id="patDOB" layoutX="235.0" layoutY="96.0" promptText="Date of birth" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="96.0" />
 
+      <TextField fx:id="doctname" layoutX="36.0" layoutY="198.0" promptText="Doctor Full Name" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="198.0" />
+      <DatePicker fx:id="appdate" layoutX="235.0" layoutY="198.0" promptText="Appointment date" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="198.0" />
 
       <Button fx:id="goBackButton" layoutX="706.0" layoutY="22.0" mnemonicParsing="false" onAction="#goBackAction" text="Go Back" />
-      <Button fx:id="deletePatientButton" layoutX="716.0" layoutY="217.0" mnemonicParsing="false" onAction="#deletePatientAction" text="Delete selected..." />
+      <Button fx:id="deletePatientButton" layoutX="653.0" layoutY="218.0" mnemonicParsing="false" onAction="#deletePatientAction" text="Delete selected..." />
       <Button fx:id="addPatientButton" layoutX="452.0" layoutY="96.0" mnemonicParsing="false" onAction="#addPatientAction" text="Add" />
+      <Button fx:id="bookAppButton" layoutX="441.0" layoutY="198.0" mnemonicParsing="false" onAction="#bookAppAction" text="Book Appointment" />
+
 
 
       <Label layoutX="36.0" layoutY="12.0" prefHeight="45.0" prefWidth="546.0" text="Add Patient Details">
          <font>
             <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="140.0" prefHeight="36.0" prefWidth="224.0" text="Book Appointment">
+         <font>
+            <Font size="25.0" />
          </font>
       </Label>
 

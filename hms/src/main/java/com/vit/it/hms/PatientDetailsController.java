@@ -66,6 +66,8 @@ public class PatientDetailsController implements Initializable {
     @FXML
     private Button goBackButton;
     @FXML
+    private Button bookAppButton;
+    @FXML
     private Button addPatientButton;
     @FXML
     private Button deletePatientButton;
@@ -73,6 +75,10 @@ public class PatientDetailsController implements Initializable {
     private DatePicker patDOB;
     @FXML
     private TextField patName;
+    @FXML
+    private DatePicker appdate;
+    @FXML
+    private TextField doctname;
 
     //button will log you out back to login page
     public void goBackAction(ActionEvent actionEvent) throws IOException {
@@ -131,6 +137,87 @@ public class PatientDetailsController implements Initializable {
         loadPatientTable();
         loadPatientData();
     }
+
+
+
+
+
+
+    public void bookAppAction(ActionEvent actionEvent) throws IOException {
+
+        //deletePatientButton.setOnAction(ev -> {
+        tablePatient.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        Patient selectedItem = tablePatient.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+
+            tablePatient.getItems().remove(selectedItem);
+
+            //get selected row
+            int PATIENT_ID = selectedItem.getPATIENT_ID();
+
+            if (PATIENT_ID == 0) {
+                //error it out
+                MessagePopup.display("Validation Error", "No item selected for appointment booking...");
+                return;
+            }
+
+            String dName = doctname.getText().toString();
+
+            if (dName.trim().equalsIgnoreCase("")){
+                //error it out
+                MessagePopup.display("Validation Error", "Name cannot be empty");
+                return;
+            }
+            LocalDate dt = appdate.getValue();
+            String appD = dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+            String query = "INSERT INTO APPOINTMENTS(patientID, dNAME, appDate) VALUES (?, ?, ?) ";
+
+            try{
+                //get a connection with MySQL 'hospital' database
+                Connection conn = DBConnect.getConnection("hospitaldb");
+                pst = conn.prepareStatement(query);
+                pst.setInt(1, PATIENT_ID);
+                pst.setString(2, dName);
+                pst.setString(3, appD);
+
+                int i = pst.executeUpdate();
+                if( i == 1) {
+                    MessagePopup.display("Book Appointment Action", "Appointment booked!");
+                } else {
+                    MessagePopup.display("Book Appointment Action", "Failure!");
+                }
+
+                //also update the table view
+
+
+            }catch (Exception e){
+                MessagePopup.display("Book Appointment Action", e.getMessage() + "" + e.toString());
+            }
+
+
+
+            loadPatientTable();
+            loadPatientData();
+        } else {
+            MessagePopup.display("Book Appointment Action", "Select row to delete!");
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
 
     //then we LOAD THE DATA onto the tableview
     private void loadPatientTable() {

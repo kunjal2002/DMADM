@@ -54,3 +54,5 @@ treatment
 gender
 
 
+git clone https://github.com/kunjal2002/DMADM.git
+git checkout -b dev

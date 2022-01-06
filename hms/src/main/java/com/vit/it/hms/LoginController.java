@@ -78,11 +78,11 @@ public class LoginController implements Initializable {
 
             if (ut.equalsIgnoreCase("P")) {
                 //load patient related page
-                root = FXMLLoader.load(HmsApplication.class.getResource("patient-view.fxml"));
+                root = FXMLLoader.load(HmsApplication.class.getResource("patient-details-view.fxml"));
                 stage.setTitle("VIT - Hospital Management System - Patient");
             }else if (ut.equalsIgnoreCase("D")) {
                 //load doctor related page
-                root = FXMLLoader.load(HmsApplication.class.getResource("doctor-view.fxml"));
+                root = FXMLLoader.load(HmsApplication.class.getResource("doctor-details-view.fxml"));
                 stage.setTitle("VIT - Hospital Management System - Doctor");
             } else {
                 //load admin page
